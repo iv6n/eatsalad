@@ -1,0 +1,55 @@
+name: eatsalad
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.5 <3.0.0"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  authentication_repository:
+    path: packages/authentication_repository
+  form_inputs:
+    path: packages/form_inputs
+  menu_repository:
+    path: packages/menu_repository
+  
+  font_awesome_flutter: ^9.1.0
+  flutter_bloc: ^8.0.1
+  google_fonts: ^2.1.0
+  flow_builder: ^0.0.4
+  firebase_core: ^1.19.1
+  equatable: ^2.0.0
+  very_good_analysis: ^2.4.0
+  formz: ^0.4.0
+  provider: ^6.0.3
+  bloc: ^8.0.3
+  rxdart: ^0.27.4
+  shimmer: ^2.0.0
+  scrollable_positioned_list: ^0.3.2
+  carousel_slider: ^4.1.1
+  
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.2.0
+
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+  assets:
+    - assets/
+

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "739505788020",
+    "project_id": "eatsalad-a0042",
+    "storage_bucket": "eatsalad-a0042.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739505788020:android:aea64ee3512abba9df6d21",
+        "android_client_info": {
+          "package_name": "app.eatsalad.eatsalad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739505788020-cgnmislquq1hhn065asufb762g6evn08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.eatsalad.eatsalad",
+            "certificate_hash": "4ae8ddb3698bc7e7496dd6a3ec6ca8ad16820e55"
+          }
+        },
+        {
+          "client_id": "739505788020-l1otu9pla0p4584ij6fqtc9d5p48deug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUxrsY2NS90wdXeSAMYn9t9rE8ObZSVEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739505788020-2jl21ltmqdsja4anl8hse8djdrkdrinf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
