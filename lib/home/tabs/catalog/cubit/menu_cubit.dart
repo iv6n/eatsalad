@@ -29,6 +29,7 @@ class MenuCubit extends Cubit<MenuState> {
           .map((result) => Item(
               result.id.toString(),
               result.itemName.toString(),
+              result.description.toString(),
               result.color.toString(),
               result.categoryId.toString(),
               result.imageUrl.toString(),

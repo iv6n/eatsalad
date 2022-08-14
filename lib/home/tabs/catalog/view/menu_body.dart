@@ -15,8 +15,8 @@ class MenuBody extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SearchBar(
-          onChanged: (term) {
-            context.read<SearchBloc>().add(SearchTermChanged(term));
+          onChanged: (text) {
+            context.read<SearchBloc>().add(TextChanged(text: text));
           },
         ),
         const Expanded(child: _SearchContent())

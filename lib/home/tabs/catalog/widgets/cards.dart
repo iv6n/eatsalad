@@ -11,9 +11,9 @@ class ComboCard extends StatelessWidget {
     required this.img,
   }) : super(key: key);
   final List imgaesdd = [
-    'https://cdn.needish.com/prod-boxfish/ddcc2a2f-2615-4d7a-b422-8ccca8092326-grpn/scale/900x600.jpg',
-    'https://scontent.fhmo2-1.fna.fbcdn.net/v/t1.6435-9/108241109_984820881977033_2887106976913326595_n.jpg?_nc_cat=103&_nc_rgb565=1&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeHAsxVQk63Yc1PQXqq5DkZ5V5MY-85BUMtXkxj7zkFQywGkjFlpMNBJnKSIDYLqX7Y&_nc_ohc=gChI6AVboy0AX8apE2d&tn=5YvsUCCHY3wLQUcy&_nc_ht=scontent.fhmo2-1.fna&oh=e4395f87a1460509ec0221ec5e205c17&oe=60EB8D21',
-    'https://scontent.fhmo2-1.fna.fbcdn.net/v/t1.6435-9/107841650_984820858643702_6088148705132003093_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeFT62XacM6rJsQyWPfDjKKVzjo8KrlCsNLOOjwquUKw0mS4nDYq64CaJxh2r_LVRDM&_nc_ohc=lQtcEv3N_bkAX-erzhG&_nc_ht=scontent.fhmo2-1.fna&oh=7bc539229415ed0a9c5e96da69e1f996&oe=60EBE29A',
+    'https://www.portablepress.com/wp-content/uploads/2017/10/Fast-food-combo-meal-1.jpg',
+    'https://www.portablepress.com/wp-content/uploads/2017/10/Fast-food-combo-meal-1.jpg',
+    'https://www.portablepress.com/wp-content/uploads/2017/10/Fast-food-combo-meal-1.jpg',
   ];
 
   final int img;
@@ -84,10 +84,10 @@ class ItemCard extends StatelessWidget {
                                   Text(item.itemName,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w600)),
-                                  const SizedBox(
+                                  SizedBox(
                                     child: Text(
-                                      'Delicioso producto hecho con ingredientes frescos',
-                                      style: TextStyle(fontSize: 10),
+                                      item.description,
+                                      style: const TextStyle(fontSize: 10),
                                       overflow: TextOverflow.clip,
                                     ),
                                   )
@@ -149,7 +149,8 @@ class SaladCard extends StatelessWidget {
                 children: [
                   SizedBox(
                     child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Container(
                             padding: const EdgeInsets.only(
@@ -166,11 +167,23 @@ class SaladCard extends StatelessWidget {
                               top: 0,
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                variant1(3),
-                                variant2(5),
-                                variant3(3),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(
+                                  Icons.fastfood,
+                                  size: 18,
+                                ),
+                                Icon(
+                                  Icons.fastfood,
+                                  size: 18,
+                                ),
+                                Icon(
+                                  Icons.fastfood,
+                                  size: 18,
+                                )
+                                //variant1(3),
+                                //variant2(5),
+                                //variant3(3),
                               ],
                             ),
                           ),

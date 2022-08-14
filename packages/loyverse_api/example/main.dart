@@ -17,7 +17,7 @@ void main() async {
           for (final Variant? variant in item.variants ?? [])
             print('${item.itemName} Price:\$ ${variant!.defaultPrice}');
         }
-        //print(item.description);
+        print(item.description);
       }
     }
   } on Exception catch (e) {

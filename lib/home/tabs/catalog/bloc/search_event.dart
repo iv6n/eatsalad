@@ -11,10 +11,12 @@ class MenuStarted extends SearchEvent {
   List<Object> get props => [];
 }
 
-class SearchTermChanged extends SearchEvent {
-  const SearchTermChanged(this.term);
-  final String term;
+class TextChanged extends SearchEvent {
+  const TextChanged({required this.text});
+  final String text;
 
   @override
-  List<Object> get props => [term];
+  List<Object> get props => [text];
+  @override
+  String toString() => 'TextChanged { text: $text }';
 }

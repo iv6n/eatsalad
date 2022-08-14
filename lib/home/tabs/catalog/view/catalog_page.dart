@@ -48,7 +48,7 @@ class _MenuSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SearchBloc(items),
+      create: (context) => SearchBloc(items: items),
       child: const MenuBody(),
     );
   }

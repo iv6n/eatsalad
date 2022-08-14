@@ -200,15 +200,16 @@ class _ScrollablePositionedListPageState
               ),
               child: Row(
                 children: [
-                  Flexible(
+                  const Flexible(
                     flex: 4,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
+                      padding: EdgeInsets.only(left: 12.0),
                       child: CircleAvatar(
-                        radius: 15,
-                        backgroundColor: Colors.white,
-                        child: Image.asset('assets/ensalada.png'),
-                      ),
+                          radius: 15,
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.fastfood,
+                          )),
                     ),
                   ),
                   Flexible(
@@ -273,7 +274,7 @@ class MenuItem extends StatelessWidget {
               SingleChildScrollView(
                 key: const PageStorageKey('ComboKey#'),
                 scrollDirection: Axis.horizontal,
-                child: Row(
+                child: Column(
                   children: [
                     for (Item item in items)
                       (item.categoryId == cat)
