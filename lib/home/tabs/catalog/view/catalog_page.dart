@@ -24,7 +24,7 @@ class CatalogPage extends StatelessWidget {
         builder: (context, state) {
           switch (state.status) {
             case MenuStatus.loading:
-              //make shimmer menu or simillar TODO:shimmer
+              //make shimmer menu or simillar
               return const Center(child: CircularProgressIndicator());
             case MenuStatus.success:
               //when menu is fetched:

@@ -1,5 +1,6 @@
 import 'package:eatsalad/home/tabs/cart/bloc/cart_bloc.dart';
 import 'package:eatsalad/home/tabs/catalog/models/item.dart';
+import 'package:eatsalad/home/tabs/catalog/view/item_add.dart';
 import 'package:eatsalad/home/tabs/catalog/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,7 +65,13 @@ class ItemCard extends StatelessWidget {
           child: BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
               return InkWell(
-                onTap: () => context.read<CartBloc>().add(CartItemAdded(item)),
+                onTap: () {
+                  //context.read<CartBloc>().add(CartItemAdded(item));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ItemAdd()),
+                  );
+                },
                 child: SizedBox(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -141,7 +148,12 @@ class SaladCard extends StatelessWidget {
           elevation: 2.5,
           color: Colors.grey[50],
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemAdd()),
+              );
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 3.5, vertical: 3),
               child: Column(

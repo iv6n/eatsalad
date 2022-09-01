@@ -3,8 +3,6 @@ import 'package:eatsalad/home/tabs/cart/models/cart.dart';
 import 'package:eatsalad/home/tabs/catalog/models/item.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:meta/meta.dart';
-
 part 'cart_event.dart';
 part 'cart_state.dart';
 

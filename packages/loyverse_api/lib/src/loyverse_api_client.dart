@@ -40,7 +40,7 @@ class LoyverseApiClient {
   //static const _authority = 'api.loyverse.com';
 
   final http.Client httpClient;
-  static const _apiKey = '3929cf9f1ef34ca9b7764f7bb2929d7c';
+  static const _apiKey = '48c76bb57fed442ba2cc622287325871';
   static const _contextRoot = '/v1.0';
   //static const _testapi = 'https://api.jsonbin.io/b/60234f0c435c323ba1c41601';
 
