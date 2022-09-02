@@ -53,7 +53,7 @@ class CartList extends StatelessWidget {
                 clipBehavior: Clip.hardEdge,
                 child: ListTile(
                   leading: const Icon(Icons.done),
-                  title: Text(item.itemName, style: itemNameStyle),
+                  title: Text(item.itemName!, style: itemNameStyle),
                   onTap: () {
                     context.read<CartBloc>().add(CartItemRemoved(index));
                   },

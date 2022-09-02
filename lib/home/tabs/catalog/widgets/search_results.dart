@@ -66,9 +66,9 @@ class _SearchResult extends StatelessWidget {
           onTap: () {},
           child: ListTile(
             leading: item.imageUrl != "null"
-                ? ImageIcon(NetworkImage(item.imageUrl))
+                ? ImageIcon(NetworkImage(item.imageUrl!))
                 : const Icon(Icons.fastfood),
-            title: Text(item.itemName),
+            title: Text(item.itemName!),
             subtitle: const Text('\$3'),
             trailing: BlocBuilder<CartBloc, CartState>(
               builder: (context, state) {

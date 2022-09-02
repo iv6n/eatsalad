@@ -80,7 +80,7 @@ class ItemCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Expanded(flex: 2, child: Image.network(item.imageUrl)),
+                        Expanded(flex: 2, child: Image.network(item.imageUrl!)),
                         Expanded(
                           flex: 6,
                           child: Padding(
@@ -88,12 +88,12 @@ class ItemCard extends StatelessWidget {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(item.itemName,
+                                  Text(item.itemName!,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w600)),
                                   SizedBox(
                                     child: Text(
-                                      item.description,
+                                      item.description!,
                                       style: const TextStyle(fontSize: 10),
                                       overflow: TextOverflow.clip,
                                     ),
@@ -110,7 +110,7 @@ class ItemCard extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text(
-                                    '\$${item.variants.price}',
+                                    '\$${item.variants!.price}',
                                     style: const TextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.w500),
@@ -170,7 +170,7 @@ class SaladCard extends StatelessWidget {
                             height: 78,
                             width: 78,
                             child: Image.network(
-                              item.imageUrl,
+                              item.imageUrl!,
                               fit: BoxFit.fitWidth,
                             ),
                           ),
@@ -205,7 +205,7 @@ class SaladCard extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    item.itemName,
+                    item.itemName!,
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
@@ -226,7 +226,7 @@ class SaladCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          '\$ ${item.variants.price}',
+                          '\$ ${item.variants!.price}',
                           style: const TextStyle(
                               fontSize: 13, fontWeight: FontWeight.w500),
                         ),

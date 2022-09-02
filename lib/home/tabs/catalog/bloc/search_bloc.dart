@@ -37,18 +37,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final results = items
           .map(
             (result) => Item(
-                result.id.toString(),
-                result.itemName.toString(),
-                result.description.toString(),
-                result.color.toString(),
-                result.categoryId.toString(),
-                result.imageUrl.toString(),
-                result.variants),
+                id: result.id.toString(),
+                itemName: result.itemName.toString(),
+                description: result.description.toString(),
+                categoryId: result.categoryId.toString(),
+                imageUrl: result.imageUrl.toString(),
+                variants: result.variants),
           )
           .toList();
       final suggestions = List.of(
         results.where(
-          (element) => element.itemName.startsWith(
+          (element) => element.itemName!.startsWith(
             RegExp(event.text, caseSensitive: false),
           ),
         ),

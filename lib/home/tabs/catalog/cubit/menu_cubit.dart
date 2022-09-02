@@ -27,13 +27,12 @@ class MenuCubit extends Cubit<MenuState> {
       final results1 = await menuRepository.fetchItems();
       final items = results1
           .map((result) => Item(
-              result.id.toString(),
-              result.itemName.toString(),
-              result.description.toString(),
-              result.color.toString(),
-              result.categoryId.toString(),
-              result.imageUrl.toString(),
-              result.variants!
+              id: result.id.toString(),
+              itemName: result.itemName.toString(),
+              description: result.description.toString(),
+              categoryId: result.categoryId.toString(),
+              imageUrl: result.imageUrl.toString(),
+              variants: result.variants!
                   .map((e) => Variant(
                         e!.variantId.toString(),
                         e.itemId.toString(),

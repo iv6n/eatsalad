@@ -9,7 +9,7 @@ class Cart extends Equatable {
   final List<Item> items;
 
   double get totalPrice =>
-      items.fold(0, (total, current) => total + current.variants.price);
+      items.fold(0, (total, current) => total + current.variants!.price);
 
   @override
   List<Object?> get props => [items];
