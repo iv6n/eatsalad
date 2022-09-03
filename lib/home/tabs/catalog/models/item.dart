@@ -15,6 +15,8 @@ class Item extends Equatable {
     this.isCompleted = false,
   });
 
+  ///TODO: set UUID in [id] when id is null
+
   //loyverse model
   final String? id;
   final String? itemName;
