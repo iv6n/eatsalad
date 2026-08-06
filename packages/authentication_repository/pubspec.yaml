@@ -15,7 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_sign_in: ^6.3.0
-  meta: ^1.19.0
+  meta: ^1.9.0
   very_good_analysis: ^5.1.0
 
 dev_dependencies:
