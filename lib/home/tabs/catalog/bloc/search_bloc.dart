@@ -27,11 +27,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final searchTerm = event.text;
 
     if (searchTerm.isEmpty) return emit(const SearchState.initial());
-    if (state.status == SearchStatus.loading) {
-      const SearchState.loading();
-    }
 
-    const SearchState.loading();
+    emit(const SearchState.loading());
 
     try {
       final results = items

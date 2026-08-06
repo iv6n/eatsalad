@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:loyverse_api/loyverse_api.dart';
 
 void main() async {
-  final loyverseApiClient = LoyverseApiClient();
+  // Supply your Loyverse API key at run time, e.g.:
+  //   dart run example/main.dart --define=LOYVERSE_API_KEY=your_key
+  const apiKey = String.fromEnvironment('LOYVERSE_API_KEY');
+  final loyverseApiClient = LoyverseApiClient(apiKey: apiKey);
 
   try {
     final its = await loyverseApiClient.items('');

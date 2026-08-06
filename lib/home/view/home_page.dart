@@ -16,8 +16,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MenuRepository menuRepository = MenuRepository();
-    //final user = context.bloc<AuthenticationBloc>().state.user;
+    // Supply the Loyverse API key at build/run time, e.g.:
+    //   flutter run --dart-define=LOYVERSE_API_KEY=your_key
+    // Never hardcode it here — this file is committed to version control.
+    final MenuRepository menuRepository = MenuRepository(
+      apiKey: const String.fromEnvironment('LOYVERSE_API_KEY'),
+    );
 
     return RepositoryProvider.value(
       value: menuRepository,
@@ -29,9 +33,6 @@ class HomePage extends StatelessWidget {
           BlocProvider<CartBloc>(
             create: (_) => CartBloc()..add(CartStarted()),
           ),
-          //BlocProvider<FavoritesBloc>(
-          //  create: (_) => FavoritesBloc()..add(FavoritesStarted()),
-          // ),
         ],
         child: ChangeNotifierProvider<BottomNavigationBarProvider>(
             create: (BuildContext context) => BottomNavigationBarProvider(),

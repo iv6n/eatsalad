@@ -1,8 +1,6 @@
 import 'package:eatsalad/home/view/home_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:eatsalad/app/app.dart';
-//import 'package:eatsalad/home/home.dart';
-
 import 'package:eatsalad/user/login/login.dart';
 
 List<Page> onGenerateAppViewPages(AppStatus state, List<Page<dynamic>> pages) {

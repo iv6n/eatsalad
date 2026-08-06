@@ -2,10 +2,8 @@ import 'dart:math';
 
 import 'package:eatsalad/home/tabs/catalog/catalog.dart';
 import 'package:eatsalad/home/tabs/catalog/models/models.dart';
-import 'package:eatsalad/home/tabs/catalog/widgets/image_slider.dart';
 import 'package:eatsalad/home/tabs/catalog/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 const scrollDuration = Duration(milliseconds: 1500);
@@ -90,14 +88,6 @@ class _ScrollablePositionedListPageState
                         : min)
                 .index
                 .toDouble();
-            print(min);
-
-            if (min != current) {
-              SchedulerBinding.instance.addPostFrameCallback((_) {
-                //setState(() => current = min);
-                //scrollTo2(min.toInt());
-              });
-            }
           }
           return Container();
         },

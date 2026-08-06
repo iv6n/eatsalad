@@ -30,19 +30,20 @@ class JsonDeserializationException implements Exception {}
 ///
 class LoyverseApiClient {
   /// {@macro loyverse_api_client}
+  ///
+  /// [apiKey] must be supplied by the caller (e.g. via
+  /// `--dart-define=LOYVERSE_API_KEY=...`) — it must never be hardcoded
+  /// here, since this source is committed to version control.
   LoyverseApiClient({
+    required this.apiKey,
     http.Client? httpClient,
     this.baseUrl = "api.loyverse.com",
   }) : this.httpClient = httpClient ?? http.Client();
 
   final String baseUrl;
-
-  //static const _authority = 'api.loyverse.com';
-
   final http.Client httpClient;
-  static const _apiKey = '48c76bb57fed442ba2cc622287325871';
+  final String apiKey;
   static const _contextRoot = '/v1.0';
-  //static const _testapi = 'https://api.jsonbin.io/b/60234f0c435c323ba1c41601';
 
   /// Returns a list of Categories
   /// from a given vocabulary that match a given set of constraints.
@@ -62,13 +63,10 @@ class LoyverseApiClient {
     }
 
     if (response.statusCode != 200) {
-      print(response.statusCode);
-
       throw HttpRequestFailure(response.statusCode);
     }
     Map body;
     try {
-      print('Exito Carnaval');
       body = json.decode(response.body) as Map;
     } on Exception {
       throw JsonDecodeException();
@@ -96,13 +94,10 @@ class LoyverseApiClient {
     }
 
     if (response.statusCode != 200) {
-      print(response.statusCode);
-
       throw HttpRequestFailure(response.statusCode);
     }
     Map body;
     try {
-      //print('Exito Carnaval${response.body}');
       body = json.decode(response.body) as Map;
     } on Exception {
       throw JsonDecodeException();
@@ -115,5 +110,5 @@ class LoyverseApiClient {
     }
   }
 
-  Map<String, String> get _header => {'Authorization': 'Bearer $_apiKey'};
+  Map<String, String> get _header => {'Authorization': 'Bearer $apiKey'};
 }

@@ -1,9 +1,9 @@
+import 'package:eatsalad/home/tabs/catalog/view/item_add.dart';
 import 'package:eatsalad/home/tabs/catalog/widgets/widgets.dart';
 import 'package:eatsalad/home/tabs/catalog/catalog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MenuBody extends StatelessWidget {
@@ -88,11 +88,10 @@ class _SearchSuccess extends StatelessWidget {
   Widget build(BuildContext context) {
     return SearchResults(
       onTap: (item) {
-        print(item);
-        //navigate to item
-        //Navigator.of(context).push<void>(
-        //SynonymsPage.route(word: suggestion.value),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ItemAdd(item: item)),
+        );
       },
     );
   }

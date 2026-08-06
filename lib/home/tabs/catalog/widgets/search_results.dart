@@ -33,7 +33,7 @@ class SearchResults extends StatelessWidget {
                 itemCount: state.suggestions.length,
                 itemBuilder: (context, index) => _SearchResult(
                       item: state.suggestions[index],
-                      onTap: () {},
+                      onTap: () => onTap(state.suggestions[index]),
                     ));
 
           case SearchStatus.failure:
@@ -63,26 +63,18 @@ class _SearchResult extends StatelessWidget {
       child: Card(
         elevation: 2,
         child: InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: ListTile(
             leading: item.imageUrl != "null"
                 ? ImageIcon(NetworkImage(item.imageUrl!))
                 : const Icon(Icons.fastfood),
             title: Text(item.itemName!),
-            subtitle: const Text('\$3'),
-            trailing: BlocBuilder<CartBloc, CartState>(
-              builder: (context, state) {
-                return IconButton(
-                  icon: const Icon(Icons.add_circle),
-                  onPressed: () =>
-                      context.read<CartBloc>().add(CartItemAdded(item)), //() {
-
-                  //bloc.addToCart(shopList[i]);
-                  //},
-                );
-              },
+            subtitle: Text('\$${item.variants?.price.toStringAsFixed(2) ?? '-'}'),
+            trailing: IconButton(
+              icon: const Icon(Icons.add_circle),
+              onPressed: () =>
+                  context.read<CartBloc>().add(CartItemAdded(item)),
             ),
-            onTap: () {},
           ),
         ),
       ),

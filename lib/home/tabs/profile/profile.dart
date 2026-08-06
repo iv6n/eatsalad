@@ -1,8 +1,6 @@
-//Tab 5 - Profile and Settings
+import 'package:eatsalad/app/app.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-final _auth = FirebaseAuth.instance;
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -88,9 +86,7 @@ class Profile extends StatelessWidget {
           ListTile(
             title: const Text('My Profile'),
             leading: const Icon(Icons.account_circle),
-            onTap: () {
-              //Navigator.pop(context);
-            },
+            onTap: () {},
           ),
           ListTile(
             title: const Text('Payment Method'),
@@ -110,9 +106,7 @@ class Profile extends StatelessWidget {
           ListTile(
             title: const Text('Settings'),
             leading: const Icon(Icons.settings),
-            onTap: () {
-              //Navigator.pop(context);
-            },
+            onTap: () {},
           ),
           ListTile(
             title: const Text('Contact Us'),
@@ -128,8 +122,8 @@ class Profile extends StatelessWidget {
             title: const Text('Log Out'),
             leading: const Icon(Icons.logout),
             onTap: () {
-              _auth.signOut();
-              Navigator.pop(context, '/login');
+              context.read<AppBloc>().add(const AppLogoutRequested());
+              Navigator.pop(context);
             },
           ),
         ],

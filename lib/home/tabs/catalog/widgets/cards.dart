@@ -66,10 +66,10 @@ class ItemCard extends StatelessWidget {
             builder: (context, state) {
               return InkWell(
                 onTap: () {
-                  //context.read<CartBloc>().add(CartItemAdded(item));
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ItemAdd()),
+                    MaterialPageRoute(
+                        builder: (context) => ItemAdd(item: item)),
                   );
                 },
                 child: SizedBox(
@@ -151,7 +151,7 @@ class SaladCard extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ItemAdd()),
+                MaterialPageRoute(builder: (context) => ItemAdd(item: item)),
               );
             },
             child: Padding(

@@ -45,3 +45,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase platform config (already tracked in this repo's history —
+# kept out of .gitignore's effect for existing files, but new copies /
+# re-adds should not be committed going forward without review).
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist

@@ -1,21 +1,25 @@
+import 'package:eatsalad/home/tabs/cart/bloc/cart_bloc.dart';
+import 'package:eatsalad/home/tabs/catalog/models/item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemAdd extends StatelessWidget {
-  const ItemAdd({Key? key}) : super(key: key);
+  const ItemAdd({Key? key, required this.item}) : super(key: key);
+
+  final Item item;
 
   @override
   Widget build(BuildContext context) {
+    final price = item.variants?.price ?? 0;
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.close),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text('Add Item'),
+          title: Text(item.itemName ?? 'Add Item'),
           centerTitle: true,
         ),
-
-        //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: BottomAppBar(
           color: Colors.transparent,
           elevation: 0,
@@ -45,9 +49,11 @@ class ItemAdd extends StatelessWidget {
                 ),
                 FloatingActionButton.extended(
                   elevation: 4.0,
-                  //icon: const Icon(Icons.add),
-                  label: const Text('Add to order  \$12.50'),
-                  onPressed: () {},
+                  label: Text('Add to order  \$${price.toStringAsFixed(2)}'),
+                  onPressed: () {
+                    context.read<CartBloc>().add(CartItemAdded(item));
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),
