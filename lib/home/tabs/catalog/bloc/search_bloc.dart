@@ -42,11 +42,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                 variants: result.variants),
           )
           .toList();
+      final searchRegExp = RegExp(RegExp.escape(event.text), caseSensitive: false);
       final suggestions = List.of(
         results.where(
-          (element) => element.itemName!.startsWith(
-            RegExp(event.text, caseSensitive: false),
-          ),
+          (element) => (element.itemName ?? '').startsWith(searchRegExp),
         ),
       );
 

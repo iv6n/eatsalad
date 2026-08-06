@@ -25,22 +25,25 @@ class MenuCubit extends Cubit<MenuState> {
           )
           .toList();
       final results1 = await menuRepository.fetchItems();
-      final items = results1
-          .map((result) => Item(
-              id: result.id.toString(),
-              itemName: result.itemName.toString(),
-              description: result.description.toString(),
-              categoryId: result.categoryId.toString(),
-              imageUrl: result.imageUrl.toString(),
-              variants: result.variants!
-                  .map((e) => Variant(
-                        e!.variantId.toString(),
-                        e.itemId.toString(),
-                        e.sku.toString(),
-                        e.defaultPrice!.toDouble(),
-                      ))
-                  .first))
-          .toList();
+      final items = results1.map((result) {
+        final variants = result.variants ?? const [];
+        final firstVariant = variants.isEmpty ? null : variants.first;
+        return Item(
+          id: result.id.toString(),
+          itemName: result.itemName.toString(),
+          description: result.description.toString(),
+          categoryId: result.categoryId.toString(),
+          imageUrl: result.imageUrl.toString(),
+          variants: firstVariant == null
+              ? null
+              : Variant(
+                  firstVariant.variantId.toString(),
+                  firstVariant.itemId.toString(),
+                  firstVariant.sku.toString(),
+                  (firstVariant.defaultPrice ?? 0).toDouble(),
+                ),
+        );
+      }).toList();
       emit(MenuState.success(categories: categories, items: items));
     } on Exception {
       emit(const MenuState.failure());

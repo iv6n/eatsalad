@@ -5,39 +5,115 @@ import 'package:eatsalad/home/tabs/catalog/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-///combo
-class ComboCard extends StatelessWidget {
-  ComboCard({
-    Key? key,
-    required this.img,
-  }) : super(key: key);
-  final List imgaesdd = [
-    'https://www.portablepress.com/wp-content/uploads/2017/10/Fast-food-combo-meal-1.jpg',
-    'https://www.portablepress.com/wp-content/uploads/2017/10/Fast-food-combo-meal-1.jpg',
-    'https://www.portablepress.com/wp-content/uploads/2017/10/Fast-food-combo-meal-1.jpg',
-  ];
+/// Renders [item]'s image, falling back to a placeholder icon when there's
+/// no image URL or the network image fails to load (Loyverse items aren't
+/// guaranteed to have an image).
+Widget _itemImage(
+  Item item, {
+  required double width,
+  required double height,
+  BoxFit fit = BoxFit.cover,
+}) {
+  final url = item.imageUrl;
+  if (url == null || url.isEmpty || url == 'null') {
+    return _imagePlaceholder(width: width, height: height);
+  }
+  return Image.network(
+    url,
+    width: width,
+    height: height,
+    fit: fit,
+    errorBuilder: (context, error, stackTrace) =>
+        _imagePlaceholder(width: width, height: height),
+  );
+}
 
-  final int img;
+Widget _imagePlaceholder({required double width, required double height}) {
+  return Container(
+    width: width,
+    height: height,
+    color: Colors.grey[200],
+    child: const Icon(Icons.fastfood, color: Colors.black26),
+  );
+}
+
+/// Formats [item]'s price, falling back to a dash when the item has no
+/// variant/price yet (Loyverse items aren't guaranteed to have one).
+String _priceLabel(Item item) {
+  final price = item.variants?.price;
+  return price != null ? '\$${price.toStringAsFixed(2)}' : '—';
+}
+
+void _openItem(BuildContext context, Item item) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ItemAdd(item: item)),
+  );
+}
+
+void _quickAddToCart(BuildContext context, Item item) {
+  context.read<CartBloc>().add(CartItemAdded(item));
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(content: Text('${item.itemName ?? 'Item'} agregado al carrito')),
+    );
+}
+
+/// A wide card for combo-style menu items, showing the item's real image,
+/// name and price.
+class ComboCard extends StatelessWidget {
+  const ComboCard({Key? key, required this.item}) : super(key: key);
+
+  final Item item;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    final hugeStyle =
-        Theme.of(context).textTheme.headline1?.copyWith(fontSize: 20);
+    final size = MediaQuery.of(context).size;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.5, vertical: 3),
       child: SizedBox(
         width: size.width * 0.55,
-        //height: size.width * 0.62,
         child: Card(
           elevation: 2.5,
           color: Colors.white,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(imgaesdd[img]),
+          child: InkWell(
+            onTap: () => _openItem(context, item),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _itemImage(item, width: double.infinity, height: 110),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          item.itemName ?? 'Combo',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          _priceLabel(item),
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -53,79 +129,68 @@ class ItemCard extends StatelessWidget {
   final Item item;
   @override
   Widget build(BuildContext context) {
-    //Size size = MediaQuery.of(context).size;
     return SizedBox(
       height: 85.0,
       child: Card(
-          elevation: 2.5,
-          margin: const EdgeInsets.all(
-            6,
-          ),
-          color: Colors.grey[50],
-          child: BlocBuilder<CartBloc, CartState>(
-            builder: (context, state) {
-              return InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ItemAdd(item: item)),
-                  );
-                },
-                child: SizedBox(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 5, top: 8, right: 10, bottom: 8),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(flex: 2, child: Image.network(item.imageUrl!)),
-                        Expanded(
-                          flex: 6,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(item.itemName!,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600)),
-                                  SizedBox(
-                                    child: Text(
-                                      item.description!,
-                                      style: const TextStyle(fontSize: 10),
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  )
-                                ]),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    '\$${item.variants!.price}',
-                                    style: const TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  const AddButton()
-                                ]),
-                          ),
-                        ),
-                      ],
+        elevation: 2.5,
+        margin: const EdgeInsets.all(6),
+        color: Colors.grey[50],
+        child: InkWell(
+          onTap: () => _openItem(context, item),
+          child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 5, top: 8, right: 10, bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: _itemImage(item, width: double.infinity, height: 69),
+                  ),
+                  Expanded(
+                    flex: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(item.itemName ?? '',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600)),
+                            SizedBox(
+                              child: Text(
+                                item.description ?? '',
+                                style: const TextStyle(fontSize: 10),
+                                overflow: TextOverflow.clip,
+                              ),
+                            )
+                          ]),
                     ),
                   ),
-                ),
-              );
-            },
-          )),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(
+                              _priceLabel(item),
+                              style: const TextStyle(
+                                  fontSize: 13, fontWeight: FontWeight.w500),
+                            ),
+                            AddButton(onPressed: () => _quickAddToCart(context, item)),
+                          ]),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -138,7 +203,6 @@ class SaladCard extends StatelessWidget {
   final Item item;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 3.5, vertical: 3),
       child: SizedBox(
@@ -148,67 +212,23 @@ class SaladCard extends StatelessWidget {
           elevation: 2.5,
           color: Colors.grey[50],
           child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ItemAdd(item: item)),
-              );
-            },
+            onTap: () => _openItem(context, item),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 3.5, vertical: 3),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(
-                    child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.only(
-                                top: 12, left: 2, right: 2),
-                            height: 78,
-                            width: 78,
-                            child: Image.network(
-                              item.imageUrl!,
-                              fit: BoxFit.fitWidth,
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                              top: 0,
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                Icon(
-                                  Icons.fastfood,
-                                  size: 18,
-                                ),
-                                Icon(
-                                  Icons.fastfood,
-                                  size: 18,
-                                ),
-                                Icon(
-                                  Icons.fastfood,
-                                  size: 18,
-                                )
-                                //variant1(3),
-                                //variant2(5),
-                                //variant3(3),
-                              ],
-                            ),
-                          ),
-                        ]),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: _itemImage(item, width: 78, height: 78, fit: BoxFit.cover),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                   Text(
-                    item.itemName!,
+                    item.itemName ?? '',
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(
                     width: 100,
@@ -226,11 +246,11 @@ class SaladCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          '\$ ${item.variants!.price}',
+                          _priceLabel(item),
                           style: const TextStyle(
                               fontSize: 13, fontWeight: FontWeight.w500),
                         ),
-                        const AddButton()
+                        AddButton(onPressed: () => _quickAddToCart(context, item)),
                       ],
                     ),
                   )
@@ -240,75 +260,6 @@ class SaladCard extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget variant1(int qty) {
-    return Container(
-      padding: const EdgeInsets.all(2.0),
-      child:
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        const Text('1 ',
-            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600)),
-        CircleAvatar(
-          radius: 12.5,
-          backgroundColor: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(width: .3, color: Colors.black54)),
-            padding: const EdgeInsets.all(4.0),
-            child: Image.asset('assets/chicken_icon.png'),
-          ),
-        ),
-      ]),
-    );
-  }
-
-  Widget variant2(int qty) {
-    return Container(
-      padding: const EdgeInsets.all(2.0),
-      child:
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        const Text('3 ',
-            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600)),
-        CircleAvatar(
-          radius: 12.5,
-          backgroundColor: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(width: .3, color: Colors.black54)),
-            padding: const EdgeInsets.all(4.0),
-            child: Image.asset('assets/ingredients_icon.png'),
-          ),
-        ),
-      ]),
-    );
-  }
-
-  Widget variant3(int qty) {
-    return Container(
-      padding: const EdgeInsets.all(2.0),
-      child:
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        const Text('2 ',
-            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600)),
-        CircleAvatar(
-          radius: 12.5,
-          backgroundColor: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(width: .3, color: Colors.black54)),
-            padding: const EdgeInsets.all(4.0),
-            child: Image.asset('assets/dressings_icon.png'),
-          ),
-        ),
-      ]),
     );
   }
 }

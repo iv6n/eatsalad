@@ -268,7 +268,7 @@ class MenuItem extends StatelessWidget {
                   children: [
                     for (Item item in items)
                       (item.categoryId == cat)
-                          ? ComboCard(img: 0)
+                          ? ComboCard(item: item)
                           : Container(),
                   ],
                 ),

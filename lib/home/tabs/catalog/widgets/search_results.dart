@@ -65,10 +65,12 @@ class _SearchResult extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: ListTile(
-            leading: item.imageUrl != "null"
+            leading: (item.imageUrl != null &&
+                    item.imageUrl != 'null' &&
+                    item.imageUrl!.isNotEmpty)
                 ? ImageIcon(NetworkImage(item.imageUrl!))
                 : const Icon(Icons.fastfood),
-            title: Text(item.itemName!),
+            title: Text(item.itemName ?? ''),
             subtitle: Text('\$${item.variants?.price.toStringAsFixed(2) ?? '-'}'),
             trailing: IconButton(
               icon: const Icon(Icons.add_circle),
