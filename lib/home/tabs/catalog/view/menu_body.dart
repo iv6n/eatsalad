@@ -14,7 +14,7 @@ class MenuBody extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SearchBar(
+        MenuSearchBar(
           onChanged: (text) {
             context.read<SearchBloc>().add(TextChanged(text: text));
           },

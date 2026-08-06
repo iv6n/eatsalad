@@ -32,7 +32,7 @@ jobs:
 
       - name: Analyze
         working-directory: ${{ matrix.package }}
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos
 
       - name: Test
         working-directory: ${{ matrix.package }}

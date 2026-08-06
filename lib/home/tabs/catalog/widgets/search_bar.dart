@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({
+class MenuSearchBar extends StatelessWidget {
+  const MenuSearchBar({
     Key? key,
     required this.onChanged,
     this.trailing,
