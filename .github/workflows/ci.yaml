@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  analyze-test:
+    name: Analyze & test (${{ matrix.package }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - .
+          - packages/authentication_repository
+          - packages/cache
+          - packages/form_inputs
+          - packages/menu_repository
+          - packages/loyverse_api
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.package }}
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: ${{ matrix.package }}
+        run: flutter analyze
+
+      - name: Test
+        working-directory: ${{ matrix.package }}
+        run: |
+          if [ -d test ]; then
+            flutter test
+          else
+            echo "No test/ directory in ${{ matrix.package }}, skipping."
+          fi
