@@ -1,25 +1,28 @@
 part of 'login_cubit.dart';
 
-class LoginState extends Equatable {
+class LoginState extends Equatable with FormzMixin {
   const LoginState({
     this.email = const Email.pure(),
     this.password = const Password.pure(),
-    this.status = FormzStatus.pure,
+    this.status = FormzSubmissionStatus.initial,
     this.errorMessage,
   });
 
   final Email email;
   final Password password;
-  final FormzStatus status;
+  final FormzSubmissionStatus status;
   final String? errorMessage;
 
   @override
   List<Object> get props => [email, password, status];
 
+  @override
+  List<FormzInput> get inputs => [email, password];
+
   LoginState copyWith({
     Email? email,
     Password? password,
-    FormzStatus? status,
+    FormzSubmissionStatus? status,
     String? errorMessage,
   }) {
     return LoginState(
