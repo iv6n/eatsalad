@@ -8,6 +8,11 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.select((AppBloc bloc) => bloc.state.user);
+    final displayName = (user.name == null || user.name!.isEmpty)
+        ? (user.email ?? 'Usuario')
+        : user.name!;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -57,66 +62,75 @@ class Profile extends StatelessWidget {
                       elevation: 2,
                       color: Colors.white,
                       shape: const CircleBorder(),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Image.asset(
-                          'assets/logo.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: (user.photo == null || user.photo!.isEmpty)
+                          ? Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Image.asset(
+                                'assets/logo.png',
+                                fit: BoxFit.contain,
+                              ),
+                            )
+                          : Image.network(
+                              user.photo!,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: Image.asset(
+                                  'assets/logo.png',
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
                     ),
                   ),
                   const SizedBox(
                     height: 3,
                   ),
-                  const Text('Ivan Canizales',
-                      style: TextStyle(
-                        fontSize: 18,
-                      )),
-                  const Text('+55 (6621) 283-453',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w300))
+                  Text(displayName, style: const TextStyle(fontSize: 18)),
+                  if (user.email != null && user.email != displayName)
+                    Text(
+                      user.email!,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w300),
+                    ),
                 ]),
           ),
           ListTile(
             title: const Text('My Orders'),
             leading: const Icon(Icons.receipt),
-            onTap: () {},
+            onTap: () => _showComingSoon(context),
           ),
           ListTile(
             title: const Text('My Profile'),
             leading: const Icon(Icons.account_circle),
-            onTap: () {},
+            onTap: () => _showComingSoon(context),
           ),
           ListTile(
             title: const Text('Payment Method'),
             leading: const Icon(Icons.payment),
-            onTap: () {},
+            onTap: () => _showComingSoon(context),
           ),
           ListTile(
             title: const Text('Delivery Address'),
             leading: const Icon(Icons.pin_drop_outlined),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Container()),
-              );
-            },
+            onTap: () => _showComingSoon(context),
           ),
           ListTile(
             title: const Text('Settings'),
             leading: const Icon(Icons.settings),
-            onTap: () {},
+            onTap: () => _showComingSoon(context),
           ),
           ListTile(
             title: const Text('Contact Us'),
             leading: const Icon(Icons.mail),
-            onTap: () {},
+            onTap: () => _showComingSoon(context),
           ),
           ListTile(
             title: const Text('Help & FAQs'),
             leading: const Icon(Icons.help_outline),
-            onTap: () {},
+            onTap: () => _showComingSoon(context),
           ),
           ListTile(
             title: const Text('Log Out'),
@@ -129,5 +143,13 @@ class Profile extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _showComingSoon(BuildContext context) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        const SnackBar(content: Text('Próximamente')),
+      );
   }
 }
