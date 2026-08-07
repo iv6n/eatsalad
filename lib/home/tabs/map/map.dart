@@ -88,7 +88,7 @@ class _LocationsState extends State<Locations> {
             ),
           )
           .toList()
-        ..sort((a, b) => a.value!.compareTo(b.value!));
+        ..sort((a, b) => a.value.compareTo(b.value));
 
       if (!mounted) return;
       setState(() {
