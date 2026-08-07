@@ -63,7 +63,7 @@ void _quickAddToCart(BuildContext context, Item item) {
 /// A wide card for combo-style menu items, showing the item's real image,
 /// name and price.
 class ComboCard extends StatelessWidget {
-  const ComboCard({Key? key, required this.item}) : super(key: key);
+  const ComboCard({super.key, required this.item});
 
   final Item item;
 
@@ -123,9 +123,9 @@ class ComboCard extends StatelessWidget {
 
 class ItemCard extends StatelessWidget {
   const ItemCard({
-    Key? key,
+    super.key,
     required this.item,
-  }) : super(key: key);
+  });
   final Item item;
   @override
   Widget build(BuildContext context) {
@@ -197,9 +197,9 @@ class ItemCard extends StatelessWidget {
 
 class SaladCard extends StatelessWidget {
   const SaladCard({
-    Key? key,
+    super.key,
     required this.item,
-  }) : super(key: key);
+  });
   final Item item;
   @override
   Widget build(BuildContext context) {

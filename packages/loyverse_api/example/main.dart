@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'dart:io';
 
 import 'package:loyverse_api/loyverse_api.dart';
@@ -16,9 +17,9 @@ void main() async {
       print('--------${category!.name}---------');
       for (final Item? item in its.items) {
         if (item!.categoryId == category.id) {
-          //print(item.itemName);
-          for (final Variant? variant in item.variants ?? [])
+          for (final Variant? variant in item.variants ?? []) {
             print('${item.itemName} Price:\$ ${variant!.defaultPrice}');
+          }
         }
         print(item.description);
       }

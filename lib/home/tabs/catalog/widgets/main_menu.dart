@@ -18,11 +18,10 @@ class ScrollablePositionedListPage extends StatefulWidget {
   final List<Category> categories;
   final List<Item> items;
   const ScrollablePositionedListPage(
-      {Key? key, required this.categories, required this.items})
-      : super(key: key);
+      {super.key, required this.categories, required this.items});
 
   @override
-  _ScrollablePositionedListPageState createState() =>
+  State<ScrollablePositionedListPage> createState() =>
       _ScrollablePositionedListPageState();
 }
 
@@ -164,11 +163,11 @@ class _ScrollablePositionedListPageState
 
 class MenuItem extends StatelessWidget {
   const MenuItem({
-    Key? key,
+    super.key,
     required this.i,
     required this.categories,
     required this.items,
-  }) : super(key: key);
+  });
 
   final int i;
   final List<Category> categories;

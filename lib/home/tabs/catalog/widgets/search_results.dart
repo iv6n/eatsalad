@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchResults extends StatelessWidget {
   const SearchResults({
-    Key? key,
+    super.key,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final ValueSetter<Item> onTap;
 
@@ -48,10 +48,10 @@ class SearchResults extends StatelessWidget {
 
 class _SearchResult extends StatelessWidget {
   const _SearchResult({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.item,
-  }) : super(key: key);
+  });
 
   final Item item;
   final VoidCallback onTap;

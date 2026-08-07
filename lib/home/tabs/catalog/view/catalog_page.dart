@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'menu_body.dart';
 
 class CatalogPage extends StatelessWidget {
-  const CatalogPage({Key? key}) : super(key: key);
+  const CatalogPage({super.key});
   static const String id = 'pag2';
   @override
   Widget build(BuildContext context) {
@@ -40,9 +40,9 @@ class CatalogPage extends StatelessWidget {
 
 class _MenuSuccess extends StatelessWidget {
   const _MenuSuccess({
-    Key? key,
+    super.key,
     required this.items,
-  }) : super(key: key);
+  });
   final List<Item> items;
 
   @override

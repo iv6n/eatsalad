@@ -24,10 +24,10 @@ var currentTab = [
 ///ISA BottomNavigationBar
 class BottomBar extends StatelessWidget {
   const BottomBar({
-    Key? key,
+    super.key,
     required this.provider,
     required this.scaffoldkey,
-  }) : super(key: key);
+  });
 
   final BottomNavigationBarProvider provider;
   final GlobalKey<ScaffoldState> scaffoldkey;

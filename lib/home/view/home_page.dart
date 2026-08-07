@@ -8,8 +8,8 @@ import 'package:menu_repository/menu_repository.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   static const String id = 'bottomnavigation';
 
   static Page page() => const MaterialPage<void>(child: HomePage());
@@ -44,8 +44,8 @@ class HomePage extends StatelessWidget {
 
 class HomeView extends StatelessWidget {
   HomeView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final PageStorageBucket bucket = PageStorageBucket();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();

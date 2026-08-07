@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class AddButton extends StatelessWidget {
   const AddButton({
-    Key? key,
+    super.key,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onPressed;
 
@@ -18,7 +18,7 @@ class AddButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          shape: WidgetStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0))),
         ),
         child: Center(

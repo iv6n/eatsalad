@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MenuBody extends StatelessWidget {
-  const MenuBody({Key? key}) : super(key: key);
+  const MenuBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class MenuBody extends StatelessWidget {
 }
 
 class _SearchContent extends StatelessWidget {
-  const _SearchContent({Key? key}) : super(key: key);
+  const _SearchContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _SearchContent extends StatelessWidget {
 }
 
 class _SearchLoading extends StatelessWidget {
-  const _SearchLoading({Key? key}) : super(key: key);
+  const _SearchLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +81,8 @@ class _SearchLoading extends StatelessWidget {
 
 class _SearchSuccess extends StatelessWidget {
   const _SearchSuccess({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ class _SearchSuccess extends StatelessWidget {
 }
 
 class _SearchInitial extends StatelessWidget {
-  const _SearchInitial({Key? key}) : super(key: key);
+  const _SearchInitial({super.key});
 
   @override
   Widget build(BuildContext context) {

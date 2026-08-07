@@ -36,7 +36,7 @@ const List<StoreLocation> _storeLocations = [
 enum _LocationStatus { loading, success, permissionDenied, serviceDisabled, error }
 
 class Locations extends StatefulWidget {
-  const Locations({Key? key}) : super(key: key);
+  const Locations({super.key});
   static const String id = 'pag1';
 
   @override

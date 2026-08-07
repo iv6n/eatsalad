@@ -38,7 +38,7 @@ class LoyverseApiClient {
     required this.apiKey,
     http.Client? httpClient,
     this.baseUrl = "api.loyverse.com",
-  }) : this.httpClient = httpClient ?? http.Client();
+  }) : httpClient = httpClient ?? http.Client();
 
   final String baseUrl;
   final http.Client httpClient;

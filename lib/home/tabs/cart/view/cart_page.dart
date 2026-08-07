@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({super.key});
   static const String id = 'pag3';
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CartPage extends StatelessWidget {
 }
 
 class CartList extends StatelessWidget {
-  const CartList({Key? key}) : super(key: key);
+  const CartList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class CartList extends StatelessWidget {
 }
 
 class CartTotal extends StatelessWidget {
-  const CartTotal({Key? key}) : super(key: key);
+  const CartTotal({super.key});
 
   @override
   Widget build(BuildContext context) {

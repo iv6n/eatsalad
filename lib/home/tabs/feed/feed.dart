@@ -44,7 +44,7 @@ final List<FeedItem> _sampleFeedItems = [
 ];
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
   static const String id = 'pag0';
 
   @override

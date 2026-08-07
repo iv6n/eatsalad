@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MenuSearchBar extends StatelessWidget {
   const MenuSearchBar({
-    Key? key,
+    super.key,
     required this.onChanged,
     this.trailing,
-  }) : super(key: key);
+  });
 
   final ValueSetter<String> onChanged;
   final Widget? trailing;
