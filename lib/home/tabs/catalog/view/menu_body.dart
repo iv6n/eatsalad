@@ -26,7 +26,7 @@ class MenuBody extends StatelessWidget {
 }
 
 class _SearchContent extends StatelessWidget {
-  const _SearchContent({super.key});
+  const _SearchContent();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _SearchContent extends StatelessWidget {
 }
 
 class _SearchLoading extends StatelessWidget {
-  const _SearchLoading({super.key});
+  const _SearchLoading();
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +80,7 @@ class _SearchLoading extends StatelessWidget {
 }
 
 class _SearchSuccess extends StatelessWidget {
-  const _SearchSuccess({
-    super.key,
-  });
+  const _SearchSuccess();
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +96,7 @@ class _SearchSuccess extends StatelessWidget {
 }
 
 class _SearchInitial extends StatelessWidget {
-  const _SearchInitial({super.key});
+  const _SearchInitial();
 
   @override
   Widget build(BuildContext context) {

@@ -48,7 +48,6 @@ class SearchResults extends StatelessWidget {
 
 class _SearchResult extends StatelessWidget {
   const _SearchResult({
-    super.key,
     required this.onTap,
     required this.item,
   });

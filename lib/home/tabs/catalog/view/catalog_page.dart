@@ -40,7 +40,6 @@ class CatalogPage extends StatelessWidget {
 
 class _MenuSuccess extends StatelessWidget {
   const _MenuSuccess({
-    super.key,
     required this.items,
   });
   final List<Item> items;
