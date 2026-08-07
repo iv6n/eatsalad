@@ -13,6 +13,14 @@ class MenuCubit extends Cubit<MenuState> {
   final MenuRepository menuRepository;
 
   Future<void> getMenu() async {
+    if (!menuRepository.isConfigured) {
+      // Sin LOYVERSE_API_KEY no hay nada real que pedirle a Loyverse — se
+      // muestra el catálogo de muestra para poder probar/hacer demo de la
+      // app completa (menú, búsqueda, carrito, checkout).
+      emit(MenuState.success(categories: mockCategories, items: mockItems));
+      return;
+    }
+
     try {
       final results2 = await menuRepository.fetchCategories();
       final categories = results2

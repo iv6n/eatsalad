@@ -16,6 +16,11 @@ class MenuRepository {
 
   final LoyverseApiClient loyverseApiClient;
 
+  /// Whether a real Loyverse API key was supplied. When `false` (no
+  /// `--dart-define=LOYVERSE_API_KEY=...` at build/run time), there's no
+  /// point calling the Loyverse API at all.
+  bool get isConfigured => loyverseApiClient.apiKey.isNotEmpty;
+
   /// Throws a [SearchException] if an error occurs.
   Future<List<Category>> fetchCategories({String? term}) async {
     try {
