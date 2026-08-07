@@ -9,6 +9,14 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  # Cada paquete bajo packages/ tiene su propio pubspec.yaml y su propio
+  # job de análisis en CI con su contexto correcto. Analizarlos también
+  # desde acá (raíz) falla en falso: por ejemplo, packages/cache/test/
+  # usa el paquete `test`, que es dev_dependency de cache, no de la raíz.
+  exclude:
+    - packages/**
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
