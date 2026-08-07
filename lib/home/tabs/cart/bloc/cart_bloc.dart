@@ -16,6 +16,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<CartStarted>(_onStarted);
     on<CartItemAdded>(_onItemAdded);
     on<CartItemRemoved>(_onItemRemoved);
+    on<CartCleared>(_onCleared);
   }
 
   static const _cartCacheKey = 'cart';
@@ -64,6 +65,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(CartError());
       }
     }
+  }
+
+  void _onCleared(CartCleared event, Emitter<CartState> emit) async {
+    const cart = Cart();
+    emit(const CartLoaded(cart: cart));
+    await _persist(cart);
   }
 
   Future<void> _persist(Cart cart) {

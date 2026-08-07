@@ -1,4 +1,5 @@
 import 'package:eatsalad/app/app.dart';
+import 'package:eatsalad/home/tabs/cart/view/order_history_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -100,7 +101,10 @@ class Profile extends StatelessWidget {
           ListTile(
             title: const Text('My Orders'),
             leading: const Icon(Icons.receipt),
-            onTap: () => _showComingSoon(context),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const OrderHistoryPage()),
+            ),
           ),
           ListTile(
             title: const Text('My Profile'),
